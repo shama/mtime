@@ -42,4 +42,15 @@ exports.mtime = {
     test.deepEqual(result, expected);
     test.done();
   },
+  'compare by sha': function(test) {
+    test.expect(1);
+
+    var result = new MTime({ cwd: 'older' }).compare('older', 'compare', 'sha');
+    var expected = ['sub/one.css'];
+    result.sort();
+    expected.sort();
+
+    test.deepEqual(result, expected);
+    test.done();
+  },
 };
