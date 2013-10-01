@@ -34,8 +34,7 @@ exports.mtime = {
 
     touch(path.resolve('older/one.css'), { mtime: new Date(1982, 8, 22) });
 
-    var mtime = new MTime();
-    var result = mtime.older(['one.css', 'two.css', 'sub/one.css'], 'compare', { cwd: 'older' });
+    var result = new MTime({ cwd: 'older' }).compare(['one.css', 'two.css', 'sub/one.css'], 'compare');
     var expected = ['one.css', 'three.css', 'sub/two.css'];
     result.sort();
     expected.sort();
