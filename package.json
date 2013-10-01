@@ -1,0 +1,41 @@
+{
+  "name": "mtime",
+  "description": "",
+  "version": "0.1.0",
+  "homepage": "https://github.com/shama/mtime",
+  "author": {
+    "name": "Kyle Robinson Young",
+    "url": "http://dontkry.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/shama/mtime.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shama/mtime/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/shama/mtime/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "lib/mtime",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt nodeunit"
+  },
+  "dependencies": {
+    "readdirrsync": "0.0.3",
+    "touch": "0.0.2"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "~0.1.1",
+    "grunt-contrib-nodeunit": "~0.1.2",
+    "grunt-contrib-watch": "~0.2.0",
+    "grunt": "~0.4.1"
+  },
+  "keywords": []
+}
