@@ -53,4 +53,23 @@ exports.mtime = {
     test.deepEqual(result, expected);
     test.done();
   },
+  'iterate': function(test) {
+    test.expect(1);
+
+    var mtime = new MTime({
+      cwd: 'older',
+      manifest: 'older',
+    });
+    var result = mtime.compare(null, {
+      'one.css': { mtime: new Date(1982) },
+      'two.css': { mtime: new Date(1982) },
+      'three.css': { mtime: new Date() },
+    });
+    var expected = ['sub/one.css', 'sub/two.css', 'three.css'];
+    result.sort();
+    expected.sort();
+
+    test.deepEqual(result, expected);
+    test.done();
+  },
 };
