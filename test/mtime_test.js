@@ -74,6 +74,31 @@ exports.mtime = {
   },
 };
 
+exports.deps = {
+  'setUp': function(done) {
+    this.cwd = process.cwd();
+    process.chdir(path.resolve(__dirname, 'fixtures'));
+    resetTimes('depends', 'compare', done);
+  },
+  'tearDown': function(done) {
+    process.chdir(this.cwd);
+    done();
+  },
+  'dependency graph': function(test) {
+    test.expect(1);
+
+    var mtime = new MTime({ cwd: 'depends', manifest: 'depends' });
+    mtime.dependsOn({'index.js': ['foo.js']});
+
+    setTimeout(function() {
+      touch(path.resolve('depends/foo.js'), { mtime: true });
+      test.deepEqual(mtime.compare('depends'), ['index.js']);
+
+      test.done();
+    }, 1000);
+  },
+};
+
 /*exports.mark = {
   'setUp': function(done) {
     this.cwd = process.cwd();
