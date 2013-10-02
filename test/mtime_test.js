@@ -45,7 +45,7 @@ exports.mtime = {
   'compare by sha': function(test) {
     test.expect(1);
 
-    var result = new MTime({ cwd: 'older' }).compare('older', 'compare', 'sha');
+    var result = new MTime({ cwd: 'older', method: 'sha' }).compare('older', 'compare');
     var expected = ['sub/one.css'];
     result.sort();
     expected.sort();
@@ -60,7 +60,7 @@ exports.mtime = {
       cwd: 'older',
       manifest: 'older',
     });
-    var result = mtime.compare(null, {
+    var result = mtime.compare({
       'one.css': { mtime: new Date(1982) },
       'two.css': { mtime: new Date(1982) },
       'three.css': { mtime: new Date() },
@@ -73,3 +73,23 @@ exports.mtime = {
     test.done();
   },
 };
+
+/*exports.mark = {
+  'setUp': function(done) {
+    this.cwd = process.cwd();
+    process.chdir(path.resolve(__dirname, 'fixtures'));
+    resetTimes('older', 'compare', done);
+  },
+  'tearDown': function(done) {
+    process.chdir(this.cwd);
+    done();
+  },
+  'mark': function(test) {
+    var mtime = new MTime();
+    var before = mtime.compare('compare', 'older');
+    //mtime.mark(before);
+    //var after = mtime.compare(null, 'compare');
+    //console.log(before);
+    test.done();
+  },
+};*/
