@@ -29,6 +29,16 @@ var diff = mtime.compare({
   'bar.js': { mtime: time },
 });
 // diff === ['foo.js']
+
+// Specify dependencies
+mtime.dependsOn({
+  'index.js': ['foo.js', 'bar.js']
+});
+diff = mtime.compare({
+  'foo.js': { mtime: new Date() },
+  'bar.js': { mtime: time },
+});
+// now diff === ['index.js']
 ```
 
 ## Documentation
